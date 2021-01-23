@@ -23,7 +23,7 @@ public class BootStrapData implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         Publisher publisher = new Publisher();
         publisher.setName("SFG Publishing");
         publisher.setCity("St Paterburgs");
@@ -31,6 +31,7 @@ public class BootStrapData implements CommandLineRunner {
         publisherRepository.save(publisher);
         Author eric = new Author("Eric", "Evans");
         Book ddd = new Book("Domain Driver Design", "123123");
+        bookRepository.save(ddd);
         eric.getBooks().add(ddd);
         ddd.getAuthors().add(eric);
         authorRepository.save(eric);
@@ -39,7 +40,9 @@ public class BootStrapData implements CommandLineRunner {
         publisher.getBooks().add(ddd);
         ddd.setPublisher(publisher);
         Author rod = new Author("Rod", "Johnson");
+        authorRepository.save(rod);
         Book noEJB = new Book("J2EE Development without EJB", "23423424");
+        bookRepository.save(noEJB);
         rod.getBooks().add(noEJB);
         noEJB.getAuthors().add(rod);
         noEJB.setPublisher(publisher);
